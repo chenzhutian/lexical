@@ -16,7 +16,7 @@
 function createCommand(type) {
   return {
     type
-  } ;
+  };
 }
 const SELECTION_CHANGE_COMMAND = createCommand('SELECTION_CHANGE_COMMAND');
 const CLICK_COMMAND = createCommand('CLICK_COMMAND');
@@ -286,7 +286,7 @@ function $flushMutations$1(editor, mutations, observer) {
           // processed outside of the Lexical engine.
           if (shouldFlushTextMutations && $isTextNode(targetNode) && shouldUpdateTextNodeFromMutation(selection, targetDOM, targetNode)) {
             handleTextMutation( // nodeType === DOM_TEXT_TYPE is a Text DOM node
-            targetDOM, targetNode, editor);
+              targetDOM, targetNode, editor);
           }
         } else if (type === 'childList') {
           shouldRevertSelection = true; // We attempt to "undo" any changes that have occurred outside
@@ -563,14 +563,14 @@ function isSelectionCapturedInDecoratorInput(anchorDOM) {
 
   const nodeName = activeElement.nodeName;
   return $isDecoratorNode($getNearestNodeFromDOMNode(anchorDOM)) && (nodeName === 'INPUT' || nodeName === 'TEXTAREA' || activeElement.contentEditable === 'true' && // @ts-ignore iternal field
-  activeElement.__lexicalEditor == null);
+    activeElement.__lexicalEditor == null);
 }
 function isSelectionWithinEditor(editor, anchorDOM, focusDOM) {
   const rootElement = editor.getRootElement();
 
   try {
     return rootElement !== null && rootElement.contains(anchorDOM) && rootElement.contains(focusDOM) && // Ignore if selection is within nested editor
-    anchorDOM !== null && !isSelectionCapturedInDecoratorInput(anchorDOM) && getNearestEditorFromDOMNode(anchorDOM) === editor;
+      anchorDOM !== null && !isSelectionCapturedInDecoratorInput(anchorDOM) && getNearestEditorFromDOMNode(anchorDOM) === editor;
   } catch (error) {
     return false;
   }
@@ -935,7 +935,7 @@ function getTextNodeOffset(node, moveSelectionToEnd) {
 }
 
 function getNodeKeyFromDOM( // Note that node here refers to a DOM Node, not an Lexical Node
-dom, editor) {
+  dom, editor) {
   let node = dom;
 
   while (node != null) {
@@ -1050,8 +1050,8 @@ function $updateTextNodeFromDOMContent(textNode, textContent, anchorOffset, focu
       const nodeKey = node.getKey();
 
       if (node.isToken() || compositionKey !== null && nodeKey === compositionKey && !isComposing || // Check if character was added at the start or boundaries when not insertable, and we need
-      // to clear this input from occurring as that action wasn't permitted.
-      $isRangeSelection(prevSelection) && (parent !== null && !parent.canInsertTextBefore() && prevSelection.anchor.offset === 0 || prevSelection.anchor.key === textNode.__key && prevSelection.anchor.offset === 0 && !node.canInsertTextBefore() || prevSelection.focus.key === textNode.__key && prevSelection.focus.offset === prevTextContentSize && !node.canInsertTextAfter())) {
+        // to clear this input from occurring as that action wasn't permitted.
+        $isRangeSelection(prevSelection) && (parent !== null && !parent.canInsertTextBefore() && prevSelection.anchor.offset === 0 || prevSelection.anchor.key === textNode.__key && prevSelection.anchor.offset === 0 && !node.canInsertTextBefore() || prevSelection.focus.key === textNode.__key && prevSelection.focus.offset === prevTextContentSize && !node.canInsertTextAfter())) {
         node.markDirty();
         return;
       }
@@ -2106,7 +2106,7 @@ function reconcileElementTerminatingLineBreak(prevElement, nextElement, dom) {
 
 function reconcileBlockDirection(element, dom) {
   const previousSubTreeDirectionTextContent = // @ts-expect-error: internal field
-  dom.__lexicalDirTextContent; // @ts-expect-error: internal field
+    dom.__lexicalDirTextContent; // @ts-expect-error: internal field
 
   const previousDirection = dom.__lexicalDir;
 
@@ -2580,21 +2580,21 @@ function $shouldPreventDefaultAndInsertText(selection, domTargetRange, text, tim
   const backingAnchorElement = editor.getElementByKey(anchorKey);
   const textLength = text.length;
   return anchorKey !== focus.key || // If we're working with a non-text node.
-  !$isTextNode(anchorNode) || // If we are replacing a range with a single character or grapheme, and not composing.
-  (!isBeforeInput && (!CAN_USE_BEFORE_INPUT || // We check to see if there has been
-  // a recent beforeinput event for "textInput". If there has been one in the last
-  // 50ms then we proceed as normal. However, if there is not, then this is likely
-  // a dangling `input` event caused by execCommand('insertText').
-  lastBeforeInputInsertTextTimeStamp < timeStamp + 50) || anchorNode.isDirty() && textLength < 2 || doesContainGrapheme(text)) && anchor.offset !== focus.offset && !anchorNode.isComposing() || // Any non standard text node.
-  $isTokenOrSegmented(anchorNode) || // If the text length is more than a single character and we're either
-  // dealing with this in "beforeinput" or where the node has already recently
-  // been changed (thus is dirty).
-  anchorNode.isDirty() && textLength > 1 || // If the DOM selection element is not the same as the backing node during beforeinput.
-  (isBeforeInput || !CAN_USE_BEFORE_INPUT) && backingAnchorElement !== null && !anchorNode.isComposing() && domAnchorNode !== getDOMTextNode(backingAnchorElement) || // If TargetRange is not the same as the DOM selection; browser trying to edit random parts
-  // of the editor.
-  domSelection !== null && domTargetRange !== null && (!domTargetRange.collapsed || domTargetRange.startContainer !== domSelection.anchorNode || domTargetRange.startOffset !== domSelection.anchorOffset) || // Check if we're changing from bold to italics, or some other format.
-  anchorNode.getFormat() !== selection.format || anchorNode.getStyle() !== selection.style || // One last set of heuristics to check against.
-  $shouldInsertTextAfterOrBeforeTextNode(selection, anchorNode);
+    !$isTextNode(anchorNode) || // If we are replacing a range with a single character or grapheme, and not composing.
+    (!isBeforeInput && (!CAN_USE_BEFORE_INPUT || // We check to see if there has been
+      // a recent beforeinput event for "textInput". If there has been one in the last
+      // 50ms then we proceed as normal. However, if there is not, then this is likely
+      // a dangling `input` event caused by execCommand('insertText').
+      lastBeforeInputInsertTextTimeStamp < timeStamp + 50) || anchorNode.isDirty() && textLength < 2 || doesContainGrapheme(text)) && anchor.offset !== focus.offset && !anchorNode.isComposing() || // Any non standard text node.
+    $isTokenOrSegmented(anchorNode) || // If the text length is more than a single character and we're either
+    // dealing with this in "beforeinput" or where the node has already recently
+    // been changed (thus is dirty).
+    anchorNode.isDirty() && textLength > 1 || // If the DOM selection element is not the same as the backing node during beforeinput.
+    (isBeforeInput || !CAN_USE_BEFORE_INPUT) && backingAnchorElement !== null && !anchorNode.isComposing() && domAnchorNode !== getDOMTextNode(backingAnchorElement) || // If TargetRange is not the same as the DOM selection; browser trying to edit random parts
+    // of the editor.
+    domSelection !== null && domTargetRange !== null && (!domTargetRange.collapsed || domTargetRange.startContainer !== domSelection.anchorNode || domTargetRange.startOffset !== domSelection.anchorOffset) || // Check if we're changing from bold to italics, or some other format.
+    anchorNode.getFormat() !== selection.format || anchorNode.getStyle() !== selection.style || // One last set of heuristics to check against.
+    $shouldInsertTextAfterOrBeforeTextNode(selection, anchorNode);
 }
 
 function shouldSkipSelectionChange(domNode, offset) {
@@ -2796,11 +2796,11 @@ function onBeforeInput(event, editor) {
   const targetRange = getTargetRange(event); // We let the browser do its own thing for composition.
 
   if (inputType === 'deleteCompositionText' || // If we're pasting in FF, we shouldn't get this event
-  // as the `paste` event should have triggered, unless the
-  // user has dom.event.clipboardevents.enabled disabled in
-  // about:config. In that case, we need to process the
-  // pasted content in the DOM mutation phase.
-  IS_FIREFOX && isFirefoxClipboardEvents(editor)) {
+    // as the `paste` event should have triggered, unless the
+    // user has dom.event.clipboardevents.enabled disabled in
+    // about:config. In that case, we need to process the
+    // pasted content in the DOM mutation phase.
+    IS_FIREFOX && isFirefoxClipboardEvents(editor)) {
     return;
   } else if (inputType === 'insertCompositionText') {
     return;
@@ -3113,11 +3113,11 @@ function onCompositionStart(event, editor) {
       $setCompositionKey(anchor.key);
 
       if ( // If it has been 30ms since the last keydown, then we should
-      // apply the empty space heuristic. We can't do this for Safari,
-      // as the keydown fires after composition start.
-      event.timeStamp < lastKeyDownTimeStamp + ANDROID_COMPOSITION_LATENCY || // FF has issues around composing multibyte characters, so we also
-      // need to invoke the empty space heuristic below.
-      anchor.type === 'element' || !selection.isCollapsed() || node.getFormat() !== selection.format || node.getStyle() !== selection.style) {
+        // apply the empty space heuristic. We can't do this for Safari,
+        // as the keydown fires after composition start.
+        event.timeStamp < lastKeyDownTimeStamp + ANDROID_COMPOSITION_LATENCY || // FF has issues around composing multibyte characters, so we also
+        // need to invoke the empty space heuristic below.
+        anchor.type === 'element' || !selection.isCollapsed() || node.getFormat() !== selection.format || node.getStyle() !== selection.style) {
         // We insert a zero width character, ready for the composition
         // to get inserted into the new node we create. If
         // we don't do this, Safari will fail on us because
@@ -3608,7 +3608,7 @@ class LexicalNode {
       if (this.__type !== 'root') {
         errorOnReadOnly();
         errorOnTypeKlassMismatch(this.__type, // @ts-expect-error
-        this.constructor);
+          this.constructor);
       }
     }
   } // Getters and Traversers
@@ -4869,7 +4869,22 @@ class TextNode extends LexicalNode {
     this.__style = '';
     this.__mode = 0;
     this.__detail = 0;
+    // mine
   }
+
+
+  getGPTTYpe() {
+    const self = this.getLatest()
+    const format = self.__format
+    const style = self.__style
+    if (self.hasFormat('strikethrough') && style.includes('color: #d0021b')) {
+      return 'del'
+    } else if (style.includes('color: #0cae4c')) {
+      return 'add'
+    }
+    return null
+  }
+
   /**
    * Returns a 32-bit integer that represents the TextFormatTypes currently applied to the
    * TextNode. You probably don't want to use this method directly - consider using TextNode.hasFormat instead.
@@ -5044,6 +5059,9 @@ class TextNode extends LexicalNode {
     if (style !== '') {
       dom.style.cssText = style;
     }
+
+    // event
+
 
     return dom;
   }
@@ -5948,7 +5966,8 @@ class TabNode extends TextNode {
   }
 
   exportJSON() {
-    return { ...super.exportJSON(),
+    return {
+      ...super.exportJSON(),
       type: 'tab',
       version: 1
     };
@@ -7541,7 +7560,7 @@ class RangeSelection {
           const prevParent = sibling.getParentOrThrow();
 
           if ($isElementNode(target) && !$isBlockElementNode(sibling) && !($isDecoratorNode(sibling) && ( // Note: We are only looking for decorators that are inline and not isolated.
-          !sibling.isInline() || sibling.isIsolated()))) {
+            !sibling.isInline() || sibling.isIsolated()))) {
             if (originalTarget === target) {
               target.append(sibling);
             } else {
@@ -7977,7 +7996,7 @@ class RangeSelection {
       let anchorNode = anchor.getNode();
 
       if (!isBackward && ( // Delete forward handle case
-      anchor.type === 'element' && $isElementNode(anchorNode) && anchor.offset === anchorNode.getChildrenSize() || anchor.type === 'text' && anchor.offset === anchorNode.getTextContentSize())) {
+        anchor.type === 'element' && $isElementNode(anchorNode) && anchor.offset === anchorNode.getChildrenSize() || anchor.type === 'text' && anchor.offset === anchorNode.getTextContentSize())) {
         const parent = anchorNode.getParent();
         const nextSibling = anchorNode.getNextSibling() || (parent === null ? null : parent.getNextSibling());
 
@@ -8763,7 +8782,7 @@ function updateDOMSelection(prevSelection, nextSelection, editor, domSelection, 
 
 
   if (anchorOffset === nextAnchorOffset && focusOffset === nextFocusOffset && anchorDOMNode === nextAnchorNode && focusDOMNode === nextFocusNode && // Badly interpreted range selection when collapsed - #1482
-  !(domSelection.type === 'Range' && isCollapsed)) {
+    !(domSelection.type === 'Range' && isCollapsed)) {
     // If the root element does not have focus, ensure it has focus
     if (activeElement === null || !rootElement.contains(activeElement)) {
       rootElement.focus({
@@ -9012,7 +9031,7 @@ function $applyTransforms(editor, node, transformsCache) {
 
 function $isNodeValidForTransform(node, compositionKey) {
   return node !== undefined && // We don't want to transform nodes being composed
-  node.__key !== compositionKey && node.isAttached();
+    node.__key !== compositionKey && node.isAttached();
 }
 
 function $normalizeAllDirtyTextNodes(editorState, editor) {
@@ -9342,7 +9361,7 @@ function commitPendingUpdates(editor, recoveryEditorState) {
   // and scroll into view if needed.
 
   if (editor._editable && // domSelection will be null in headless
-  domSelection !== null && (needsUpdate || pendingSelection === null || pendingSelection.dirty)) {
+    domSelection !== null && (needsUpdate || pendingSelection === null || pendingSelection.dirty)) {
     activeEditor = editor;
     activeEditorState = pendingEditorState;
 
@@ -10659,7 +10678,8 @@ class ParagraphNode extends ElementNode {
   }
 
   exportJSON() {
-    return { ...super.exportJSON(),
+    return {
+      ...super.exportJSON(),
       type: 'paragraph',
       version: 1
     };
@@ -10856,8 +10876,8 @@ function createEditor(editorConfig) {
           });
 
           if ( // eslint-disable-next-line no-prototype-builtins
-          !klass.hasOwnProperty('importDOM') && // eslint-disable-next-line no-prototype-builtins
-          klass.hasOwnProperty('exportDOM')) {
+            !klass.hasOwnProperty('importDOM') && // eslint-disable-next-line no-prototype-builtins
+            klass.hasOwnProperty('exportDOM')) {
             console.warn(`${name} should implement "importDOM" if using a custom "exportDOM" method to ensure HTML serialization (important for copy & paste) works as expected`);
           }
 
@@ -10869,12 +10889,12 @@ function createEditor(editorConfig) {
           }
 
           if ( // eslint-disable-next-line no-prototype-builtins
-          !klass.hasOwnProperty('importJSON')) {
+            !klass.hasOwnProperty('importJSON')) {
             console.warn(`${name} should implement "importJSON" method to ensure JSON and default HTML serialization works as expected`);
           }
 
           if ( // eslint-disable-next-line no-prototype-builtins
-          !proto.hasOwnProperty('exportJSON')) {
+            !proto.hasOwnProperty('exportJSON')) {
             console.warn(`${name} should implement "exportJSON" method to ensure JSON and default HTML serialization works as expected`);
           }
         }
@@ -11576,7 +11596,8 @@ class DEPRECATED_GridCellNode extends ElementNode {
   }
 
   exportJSON() {
-    return { ...super.exportJSON(),
+    return {
+      ...super.exportJSON(),
       colSpan: this.__colSpan,
       rowSpan: this.__rowSpan
     };
@@ -11612,7 +11633,7 @@ function DEPRECATED_$isGridCellNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-class DEPRECATED_GridNode extends ElementNode {}
+class DEPRECATED_GridNode extends ElementNode { }
 function DEPRECATED_$isGridNode(node) {
   return node instanceof DEPRECATED_GridNode;
 }
@@ -11624,7 +11645,7 @@ function DEPRECATED_$isGridNode(node) {
  * LICENSE file in the root directory of this source tree.
  *
  */
-class DEPRECATED_GridRowNode extends ElementNode {}
+class DEPRECATED_GridRowNode extends ElementNode { }
 function DEPRECATED_$isGridRowNode(node) {
   return node instanceof DEPRECATED_GridRowNode;
 }

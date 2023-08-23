@@ -39,6 +39,7 @@ export declare class TextNode extends LexicalNode {
     static getType(): string;
     static clone(node: TextNode): TextNode;
     constructor(text: string, key?: NodeKey);
+    getGPTTYpe(): null | 'add' | 'del'
     /**
      * Returns a 32-bit integer that represents the TextFormatTypes currently applied to the
      * TextNode. You probably don't want to use this method directly - consider using TextNode.hasFormat instead.
