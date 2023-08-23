@@ -11630,6 +11630,7 @@ function DEPRECATED_$isGridRowNode(node) {
 }
 
 exports.$addUpdateTag = $addUpdateTag;
+exports.getActiveEditor = getActiveEditor
 exports.$applyNodeReplacement = $applyNodeReplacement;
 exports.$copyNode = $copyNode;
 exports.$createLineBreakNode = $createLineBreakNode;
@@ -11639,6 +11640,7 @@ exports.$createRangeSelection = $createRangeSelection;
 exports.$createTabNode = $createTabNode;
 exports.$createTextNode = $createTextNode;
 exports.$getAdjacentNode = $getAdjacentNode;
+exports.$isTokenOrSegmented = $isTokenOrSegmented
 exports.$getNearestNodeFromDOMNode = $getNearestNodeFromDOMNode;
 exports.$getNearestRootOrShadowRoot = $getNearestRootOrShadowRoot;
 exports.$getNodeByKey = $getNodeByKey;

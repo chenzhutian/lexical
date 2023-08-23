@@ -20,8 +20,8 @@ export { COMMAND_PRIORITY_CRITICAL, COMMAND_PRIORITY_EDITOR, COMMAND_PRIORITY_HI
 export type { EventHandler } from './LexicalEvents';
 export { $normalizeSelection as $normalizeSelection__EXPERIMENTAL } from './LexicalNormalization';
 export { $createNodeSelection, $createRangeSelection, $getPreviousSelection, $getSelection, $getTextContent, $insertNodes, $isBlockElementNode, $isNodeSelection, $isRangeSelection, $updateElementSelectionOnCreateDeleteNode, DEPRECATED_$computeGridMap, DEPRECATED_$createGridSelection, DEPRECATED_$getNodeTriplet, DEPRECATED_$isGridSelection, } from './LexicalSelection';
-export { $parseSerializedNode, errorOnReadOnly } from './LexicalUpdates';
-export { $addUpdateTag, $applyNodeReplacement, $copyNode, $getAdjacentNode, $getNearestNodeFromDOMNode, $getNearestRootOrShadowRoot, $getNodeByKey, $getRoot, $hasAncestor, $hasUpdateTag, $isInlineElementOrDecoratorNode, $isLeafNode, $isRootOrShadowRoot, $nodesOfType, $selectAll, $setCompositionKey, $setSelection, $splitNode, getNearestEditorFromDOMNode, isSelectionCapturedInDecoratorInput, isSelectionWithinEditor, $getCompositionKey, internalMarkSiblingsAsDirty } from './LexicalUtils';
+export { $parseSerializedNode, errorOnReadOnly, getActiveEditor } from './LexicalUpdates';
+export { $addUpdateTag, $applyNodeReplacement, $copyNode, $getAdjacentNode, $getNearestNodeFromDOMNode, $getNearestRootOrShadowRoot, $getNodeByKey, $getRoot, $hasAncestor, $hasUpdateTag, $isInlineElementOrDecoratorNode, $isLeafNode, $isRootOrShadowRoot, $nodesOfType, $selectAll, $setCompositionKey, $setSelection, $splitNode, getNearestEditorFromDOMNode, isSelectionCapturedInDecoratorInput, isSelectionWithinEditor, $getCompositionKey, internalMarkSiblingsAsDirty, $isTokenOrSegmented } from './LexicalUtils';
 export { $isDecoratorNode, DecoratorNode } from './nodes/LexicalDecoratorNode';
 export { $isElementNode, ElementNode } from './nodes/LexicalElementNode';
 export { DEPRECATED_$isGridCellNode, DEPRECATED_GridCellNode, } from './nodes/LexicalGridCellNode';
