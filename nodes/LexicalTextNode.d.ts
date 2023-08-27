@@ -39,6 +39,7 @@ export declare class TextNode extends LexicalNode {
     /** @internal */
     _uid: string
 
+    static UID_MAP: Record<string, TextNode>;
     static getType(): string;
     static clone(node: TextNode): TextNode;
     constructor(text: string, key?: NodeKey);

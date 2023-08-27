@@ -4862,6 +4862,8 @@ class TextNode extends LexicalNode {
     return new TextNode(node.__text, node.__key);
   }
 
+  static UID_MAP = {}
+
   constructor(text, key) {
     super(key);
     this.__text = text;
@@ -5247,6 +5249,7 @@ class TextNode extends LexicalNode {
   setUID(uid) {
     const self = this.getWritable()
     self._uid = uid
+    TextNode.UID_MAP[uid] = self
     return self
   }
 
