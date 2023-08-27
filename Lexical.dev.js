@@ -4870,12 +4870,16 @@ class TextNode extends LexicalNode {
     this.__mode = 0;
     this.__detail = 0;
     // mine
+    this._uid = ''
   }
 
-
-  getGPTTYpe() {
+  getUID() {
     const self = this.getLatest()
-    const format = self.__format
+    return self._uid
+  }
+
+  getGPTType() {
+    const self = this.getLatest()
     const style = self.__style
     if (self.hasFormat('strikethrough') && style.includes('color: #d0021b')) {
       return 'del'
@@ -5184,6 +5188,7 @@ class TextNode extends LexicalNode {
     node.setFormat(serializedNode.format);
     node.setDetail(serializedNode.detail);
     node.setMode(serializedNode.mode);
+    node.setUID(serializedNode.uid);
     node.setStyle(serializedNode.style);
     return node;
   } // This improves Lexical's basic text output in copy+paste plus
@@ -5226,6 +5231,7 @@ class TextNode extends LexicalNode {
       detail: this.getDetail(),
       format: this.getFormat(),
       mode: this.getMode(),
+      uid: this.getUID(),
       style: this.getStyle(),
       text: this.getTextContent(),
       type: 'text',
@@ -5237,6 +5243,13 @@ class TextNode extends LexicalNode {
   selectionTransform(prevSelection, nextSelection) {
     return;
   }
+
+  setUID(uid) {
+    const self = this.getWritable()
+    self._uid = uid
+    return self
+  }
+
   /**
    * Sets the node format to the provided TextFormatType or 32-bit integer. Note that the TextFormatType
    * version of the argument can only specify one format and doing so will remove all other formats that
